@@ -1,5 +1,6 @@
 package com.hamitmizrak.bussiness.dto;
 
+import com.hamitmizrak.annotation.UserRegisterUniqueEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -15,9 +16,11 @@ public class UserRegisterDto {
     @NotNull(message = "{register.email.validation.constraints.NotNull.message}")
     @Email
     @Size(max = 200)
+    //@UserRegisterUniqueEmail
     private String email;
 
     @NotNull(message = "{register.password.validation.constraints.NotNull.message}")
-    //@Pattern(message = "{register.password.pattern.validation.constraints.NotNull.message}")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{register.password.pattern.validation.constraints.NotNull.message}")
+    @Size(min =7,max=30 )
     private String password;
 }
