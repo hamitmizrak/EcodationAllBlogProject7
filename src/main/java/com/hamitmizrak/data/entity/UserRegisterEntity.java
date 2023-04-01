@@ -1,8 +1,7 @@
 package com.hamitmizrak.data.entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 //lombok
 @Data
@@ -11,6 +10,7 @@ import lombok.Data;
 @Entity
 @Table(name = "user_register")
 public class UserRegisterEntity extends  BaseEntity{
+
 
     //String => columnDefinition = "varchar(255) default 'adınızı girmediniz'"
     //INT    => columnDefinition = "integer default 44"
