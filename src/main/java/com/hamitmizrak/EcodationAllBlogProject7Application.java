@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.TimeZone;
 
@@ -15,6 +16,7 @@ import java.util.TimeZone;
 }
 )
 //@SpringBootApplication
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
 public class EcodationAllBlogProject7Application {
 
     @PostConstruct
