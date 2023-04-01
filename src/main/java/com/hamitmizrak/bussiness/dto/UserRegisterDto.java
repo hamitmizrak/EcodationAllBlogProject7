@@ -22,7 +22,7 @@ public class UserRegisterDto {
     @NotNull(message = "{register.email.validation.constraints.NotNull.message}")
     @Email
     @Size(max = 200)
-    //@UserRegisterUniqueEmail
+    @UserRegisterUniqueEmail
     private String email;
 
     //PASSWORD
@@ -34,5 +34,6 @@ public class UserRegisterDto {
     //Kullanıcı aktif mi pasif mi
     private boolean isActive=false;
 
+    //Sistem tarihi almak
     private Date createdDate;
 }
