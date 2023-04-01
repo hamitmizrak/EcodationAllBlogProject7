@@ -32,6 +32,7 @@ abstract   public class BaseEntity {
     private Long id;
 
     //Tarihi otomatik sisteme ekleme
+    @Column(name = "system_created_date",updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date systemCreatedDate;
