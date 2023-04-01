@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.Date;
+
 //DTO ==> validation
 public class UserRegisterDto {
 
@@ -23,4 +25,6 @@ public class UserRegisterDto {
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{register.password.pattern.validation.constraints.NotNull.message}")
     @Size(min =7,max=30 )
     private String password;
+
+    private Date createdDate;
 }
