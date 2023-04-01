@@ -32,8 +32,8 @@ IRegisterRepository
 
 
 ---
-# Ecodation Java Full Stack Developer -6 (29 Ekim  2022)
-* [GitHub](https://github.com/hamitmizrak/EcodationBlogProject6)
+# Ecodation Java Full Stack Developer -7 (1 Nisan  2023)
+* [GitHub](https://github.com/hamitmizrak/EcodationAllBlogProject7)
 * 
 ### Gereksinimler
 Java 19
