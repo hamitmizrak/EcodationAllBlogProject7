@@ -11,7 +11,6 @@ import org.springframework.data.annotation.Id;
 @Table(name = "user_register")
 public class UserRegisterEntity extends  BaseEntity{
 
-
     //String => columnDefinition = "varchar(255) default 'adınızı girmediniz'"
     //INT    => columnDefinition = "integer default 44"
     @Column(name ="user_name",columnDefinition = "varchar(255) default 'adınızı girmediniz'")
