@@ -1,7 +1,6 @@
-package com.hamitmizrak.ui;
+package com.hamitmizrak.controller;
 
 import com.hamitmizrak.bussiness.dto.UserRegisterDto;
-import com.hamitmizrak.data.entity.UserRegisterEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;

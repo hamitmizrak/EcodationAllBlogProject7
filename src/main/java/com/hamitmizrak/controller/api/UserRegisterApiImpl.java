@@ -1,9 +1,9 @@
-package com.hamitmizrak.ui.controller;
+package com.hamitmizrak.controller.api;
 
 import com.hamitmizrak.bussiness.dto.UserRegisterDto;
 import com.hamitmizrak.bussiness.services.IUserRegisterService;
 import com.hamitmizrak.error.ApiResult;
-import com.hamitmizrak.ui.IUserRegisterApi;
+import com.hamitmizrak.controller.IUserRegisterApi;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

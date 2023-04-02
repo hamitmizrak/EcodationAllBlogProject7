@@ -1,6 +1,6 @@
-package com.hamitmizrak.persistence;
+package com.hamitmizrak.utils;
 
-public class PersistenceData {
+public class PersistenceEndPoint {
     // Unicode Characters to Java Entities Converter
     // https://itpro.cz/juniconv/
 
