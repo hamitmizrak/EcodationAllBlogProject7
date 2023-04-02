@@ -1,0 +1,28 @@
+React Install
+-------------------------------------------------
+npx create-react-app frontend
+npm start 
+
+npm install axios --save 
+npm i react-router-dom@5.2.0 --save 
+
+#################################################################
+
+React Information
+-------------------------------------------------
+React ES6+
+Babel: 
+Props: Componentler arasında veri taşımak
+State: Componentin durumudur 
+
+Stateless : state(-)
+Statefull : state(+)
+
+#################################################################
+
+-- Life Cycle--
+1-Constructor 
+2-Render 
+3-CDM (Component did mount ) => Api,
+4-CDU (Component Did update) => Güncelleme
+5-cwm (Component Will Un Mount) => Component içeriğini temizlemek
