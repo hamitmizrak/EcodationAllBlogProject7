@@ -95,7 +95,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
     // FIND
     // @Transactional: select ve list için yazmama gerek yok
     @Override
-    public UserRegisterDto getFindByRegister(Long id, UserRegisterDto userRegisterDto) {
+    public UserRegisterDto getFindByRegister(Long id) {
         //1.YOL
       /*
         Optional<UserRegisterEntity> findEntity= iUserRegisterRepository.findById(id);
