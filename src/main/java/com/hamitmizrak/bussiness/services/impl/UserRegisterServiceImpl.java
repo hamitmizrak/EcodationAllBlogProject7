@@ -27,10 +27,8 @@ import java.util.Map;
 //Service: Asıl iş yükünü yapan class
 @Service
 public class UserRegisterServiceImpl implements IUserRegisterService {
-    private final IUserRegisterRepository iUserRegisterRepository;
-
     //Injection
-    private final IUserRegisterService iUserRegisterService;
+    private final IUserRegisterRepository iUserRegisterRepository;
     private final ModelMapperBean modelMapperBean;
     private final PasswordEncoderBean passwordEncoderBean;
 

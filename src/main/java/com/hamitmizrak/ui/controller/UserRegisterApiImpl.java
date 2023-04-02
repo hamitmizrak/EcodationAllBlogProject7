@@ -7,15 +7,15 @@ import com.hamitmizrak.ui.IUserRegisterApi;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
 //LOMBOK
-@RequiredArgsConstructor //injection
+//@RequiredArgsConstructor //injection
 @Log4j2
 
 //API: Dış Dünyaya açılan kapıdır.
@@ -25,8 +25,13 @@ import java.util.Map;
 
 public class UserRegisterApiImpl implements IUserRegisterApi {
     //INJECTION
-    private IUserRegisterService iUserRegisterService;
 
+    private final  IUserRegisterService iUserRegisterService;
+    //Constructor Injection
+    @Autowired //Constructor Injection
+    public UserRegisterApiImpl(IUserRegisterService iUserRegisterService) {
+        this.iUserRegisterService = iUserRegisterService;
+    }
 
     //PROFILE
     @Override
