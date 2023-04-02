@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -119,17 +120,19 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
     // DELETE
     @Transactional
     @Override
-    public UserRegisterDto deleteRegister(Long id) {
+    public Map<String,Boolean>  deleteRegister(Long id) {
         UserRegisterEntity findEntity = iUserRegisterRepository.findById(id)
                 //Lambda expression
                 .orElseThrow(() -> new ResourceNotFoundException(id + " nolu id bulunamadı"));
         //Obje doluysa silsin
+        Map<String,Boolean> deleteResponse=new LinkedHashMap<>();
         if(findEntity!=null){
             iUserRegisterRepository.delete(findEntity);
+            deleteResponse.put("Silindi",Boolean.TRUE);
         }
-        //Model Mapper
-        UserRegisterDto findDto = EntityToDto(findEntity);
-        return findDto;
+        //Model Mapper: eğer aşağıdaki Object döndürmek istersen
+        //UserRegisterDto findDto = EntityToDto(findEntity);
+        return deleteResponse;
     }
 
     //UPDATE

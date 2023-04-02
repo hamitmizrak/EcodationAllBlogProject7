@@ -34,7 +34,7 @@ public interface IUserRegisterService {
     public UserRegisterDto  getFindByRegister(Long id);
 
     //DELETE
-    public UserRegisterDto  deleteRegister(Long id);
+    public Map<String,Boolean>  deleteRegister(Long id);
 
     //UPDATE
     public UserRegisterDto  updateRegister(Long id,UserRegisterDto userRegisterDto);
