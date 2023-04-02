@@ -2,12 +2,13 @@ package com.hamitmizrak.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.*;
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
@@ -31,6 +32,7 @@ abstract public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",updatable = false,nullable = false)
     private Long id;
+
 
     //Tarihi otomatik sisteme ekleme
     @Column(name = "system_created_date",updatable = false)
