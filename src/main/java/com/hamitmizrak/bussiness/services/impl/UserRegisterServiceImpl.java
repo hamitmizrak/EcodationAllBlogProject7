@@ -7,14 +7,18 @@ import com.hamitmizrak.bussiness.services.IUserRegisterService;
 import com.hamitmizrak.data.entity.UserRegisterEntity;
 import com.hamitmizrak.data.repository.IUserRegisterRepository;
 import com.hamitmizrak.exception.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-//lombok
+//lombok 2410 > 2739
 @RequiredArgsConstructor
 @Log4j2
 //SneakyThrows
@@ -28,6 +32,24 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
     private final IUserRegisterService iUserRegisterService;
     private final ModelMapperBean modelMapperBean;
     private final PasswordEncoderBean passwordEncoderBean;
+
+    //PROFILE
+    @Override
+    public String getProfile(String name) {
+        return null;
+    }
+
+    //Header Information
+    @Override
+    public void getAllHeaderData(Map<String, String> headers) {
+
+    }
+
+    //App Information
+    @Override
+    public ResponseEntity<?> getAppInformation(HttpServletRequest request, HttpServletResponse response) {
+        return null;
+    }
 
     // MODEL MAPPER
     @Override
