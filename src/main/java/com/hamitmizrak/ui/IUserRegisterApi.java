@@ -36,7 +36,7 @@ public interface IUserRegisterApi {
     public ResponseEntity<?>  getFindByRegister(Long id);
 
     //DELETE
-    public ResponseEntity<Map<String,String>>  deleteRegister(Long id);
+    public ResponseEntity<Map<String,Boolean>>  deleteRegister(Long id);
 
     //UPDATE
     public ResponseEntity<UserRegisterDto>  updateRegister(Long id,UserRegisterDto userRegisterDto);

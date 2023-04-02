@@ -57,7 +57,7 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
 
     // +++++++++ CRUD  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // CREATE
-    // http://localhost:4444/register
+    // http://localhost:4444/api/v1/register
     @Override
     @PostMapping("/register")
     public ResponseEntity<UserRegisterDto>  createRegister(@Valid @RequestBody UserRegisterDto userRegisterDto) {
@@ -66,7 +66,7 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
     }
 
     // LIST
-    // http://localhost:4444/list
+    // http://localhost:4444/api/v1/list
     @Override
     @GetMapping(value = "/list")
     public ResponseEntity<List<UserRegisterDto>>  getAllRegisters() {
@@ -74,10 +74,10 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
     }
 
     // FIND
-    // http://localhost:4444/register
-    // http://localhost:4444/register/0
-    // http://localhost:4444/register/-1
-    // http://localhost:4444/register/1
+    // http://localhost:4444/api/v1/register
+    // http://localhost:4444/api/v1/register/0
+    // http://localhost:4444/api/v1/register/-1
+    // http://localhost:4444/api/v1/register/1
     @Override
     @GetMapping({"/register","/register/{id}"})
     public ResponseEntity<?>  getFindByRegister( @PathVariable(name="id",required = false) Long id) {
@@ -103,10 +103,13 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
     }
 
 
-    //DELETE
+    // DELETE
+    // http://localhost:4444/api/v1/register
+    // http://localhost:4444/api/v1/register/0
+    // http://localhost:4444/api/v1/register/1
     @Override
     @DeleteMapping({"/register","/register/{id}"})
-    public ResponseEntity<Map<String,String>>  deleteRegister(@PathVariable(name="id",required = false) Long id) {
+    public ResponseEntity<Map<String,Boolean>>  deleteRegister(@PathVariable(name="id",required = false) Long id) {
         if(id==null){
             log.error("404 not found => Bulunamadı");
             return  ResponseEntity.notFound().build();
@@ -115,10 +118,13 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
             return  ResponseEntity.badRequest().build();
         }
         log.info(id+ "verisi bulundu: "+iUserRegisterService.getFindByRegister(id));
-        return (ResponseEntity<Map<String, String>>) ResponseEntity.ok(iUserRegisterService.deleteRegister(id));
+        return  ResponseEntity.ok(iUserRegisterService.deleteRegister(id));
     }
 
-    //UPDATE
+    // UPDATE
+    // http://localhost:4444/api/v1/register
+    // http://localhost:4444/api/v1/register/0
+    // http://localhost:4444/api/v1/register/1
     @Override
     @PutMapping({"/register","/register/{id}"})
     public ResponseEntity<UserRegisterDto>  updateRegister(@PathVariable(name="id",required = false) Long id, @Valid @RequestBody UserRegisterDto userRegisterDto) {
