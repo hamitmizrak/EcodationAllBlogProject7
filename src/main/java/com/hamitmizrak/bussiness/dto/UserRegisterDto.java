@@ -42,7 +42,7 @@ public class UserRegisterDto {
     private String passwd;
 
     // Kullanıcı aktif mi pasif mi
-    private boolean isActive=false;
+    private String check;
 
     // Sistem tarihi almak
     private Date createdDate;

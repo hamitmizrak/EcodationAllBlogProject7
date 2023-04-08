@@ -1,16 +1,19 @@
 // rcc ==> TAB
 // classlar state bir yapıdadır. state yazarız: statefull
+// classlar this çok sever
 // unutma: classta return vardır.
 // JSX => JS  almak istiyorsanız {} eklemelisiniz.
 // JSX => CSS almak istiyorsanız {{}} eklemelisiniz.
 // JSX ==> Fonkiyonlarda ve props başına mutlaka this yazmalısınız.
-import React, { Component } from 'react'
-import UserRegisterApiServices from '../../services/UserRegisterApiServices';
 
 // life cycle 
 // 1-) constructor 
 // 2-) render
 // 3-) CDM
+import React, { Component } from 'react'
+import UserRegisterApiServices from '../../services/UserRegisterApiServices';
+
+//class
 export default class RegisterList extends Component {
     constructor(props) {
         super(props);
@@ -35,30 +38,30 @@ export default class RegisterList extends Component {
                     registerList: response.data
                 });
             }
-        ).catch(error=>{
+        ).catch(error => {
             console.log("List wrong")
         });
     }
 
     //FUNCTION 
-    //ADD
+    //ADD  this => php
     addRegister() {
-        this.props.history.push("/add-register/") // this => PHP
+        this.props.history.push("/register_add/create") // this => PHP
     }
 
-    //UPDATE
+    //UPDATE this => php
     updateRegister(id) {
         //this.props.history.push("/add-register/"+id);
-        this.props.history.push(`/add-register/${id}`);
+        this.props.history.push(`/register_add/${id}/`);
     }
 
-    //VIEW
+    //VIEW this => php
     viewRegister(id) {
         //this.props.history.push("/view-register/"+id);
-        this.props.history.push(`/view-register/${id}`);
+        this.props.history.push(`/register_view/${id}`);
     }
 
-    //DELETE
+    //DELETE REDIRECT 
     deleteRegister(id) {
         UserRegisterApiServices.deleteRegister(id).then(
             (response) => {
@@ -67,7 +70,7 @@ export default class RegisterList extends Component {
                         registerList => registerList.id != id
                     )
                 });
-            }).catch(error=>{
+            }).catch(error => {
                 console.log("Delete wrong")
             });
     }
@@ -105,15 +108,16 @@ export default class RegisterList extends Component {
                                             <td>{temp.username}</td>
                                             <td>{temp.email}</td>
                                             <td>{temp.passwd}</td>
-                                            <td>{temp.isActive}</td>
+                                            <td>{temp.check}</td>
                                             <td>{temp.createdDate}</td>
-                                            <td><i className="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
-                                            <td><i className="fa-solid fa-binoculars text-success" onClick={() => this.viewRegister(temp.id)}></i></td>
-                                            <td><i className="fa-solid fa-trash text-danger" onClick={() => {
+                                            <td><i style={{ cursor: "pointer" }} className="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
+                                            <td><i style={{ cursor: "pointer" }} className="fa-solid fa-binoculars text-success" onClick={() => this.viewRegister(temp.id)}></i></td>
+                                            <td><i style={{ cursor: "pointer" }} className="fa-solid fa-trash text-danger" onClick={() => {
                                                 if (window.confirm("Silmek istiyor musunuz ?")) {
                                                     this.deleteRegister(temp.id)
                                                 }
-                                            }}></i></td>
+                                            }}></i>
+                                            </td>
                                         </tr>
                                     )
                                 }

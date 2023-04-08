@@ -70,6 +70,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
             //sifreyi masklemek
             userRegisterDto.setPasswd(passwordEncoderBean.passwordEncoderMethod().encode(userRegisterDto.getPasswd()));
             UserRegisterEntity entityMapper = DtoToEntity(userRegisterDto);
+            System.out.println(entityMapper.getCheck());
             UserRegisterEntity userRegisterEntity = iUserRegisterRepository.save(entityMapper);
             //ID dönsün
             userRegisterDto.setId(userRegisterEntity.getId());
@@ -144,8 +145,8 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
         if(findEntity!=null){
             findEntity.setUsername(userRegisterDto.getUsername());
             findEntity.setEmail(userRegisterDto.getEmail());
-            findEntity.setActive(userRegisterDto.isActive());
-            findEntity.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(findEntity.getPassword()));
+            findEntity.setCheck(userRegisterDto.getCheck());
+            findEntity.setPasswd(passwordEncoderBean.passwordEncoderMethod().encode(findEntity.getPasswd()));
             iUserRegisterRepository.save(findEntity);
         }
         //Model Mapper

@@ -13,7 +13,8 @@
 import React, { Component } from 'react'
 import UserRegisterApiServices from '../../services/UserRegisterApiServices';
 
-export default class RegisterCreate extends Component {
+
+export default class CreateOrUpdateRegister extends Component {
     //constructor 
     constructor(props) {
         super(props);
@@ -23,7 +24,8 @@ export default class RegisterCreate extends Component {
             id: this.props.match.params.id,
             username: "",
             email: "",
-            passwd: ""
+            passwd: "",
+            check:true
         }
 
         //BIND
@@ -33,6 +35,9 @@ export default class RegisterCreate extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePasswd = this.onChangePasswd.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeCheck = this.onChangeCheck.bind(this);
+
+        
     }
 
     //CDM 
@@ -41,7 +46,7 @@ export default class RegisterCreate extends Component {
         //GÜNCELLEME => 1
 
         //EKLEME 
-        if (this.state.id === "add-register") {
+        if (this.state.id === "create") {
             return;
         } else { //GÜNCELLEME
             UserRegisterApiServices.getFindByRegister(this.state.id).then(
@@ -51,7 +56,8 @@ export default class RegisterCreate extends Component {
                     this.setState({
                         username: registerDto.username,
                         email: registerDto.email,
-                        password: registerDto.password,
+                        passwd: registerDto.passwd,
+                        check: !registerDto.check,
                     })//end setState
                 }//end response
             ).catch(error => {
@@ -73,7 +79,7 @@ export default class RegisterCreate extends Component {
 
     //Dynamics Save or update 
     titleDynamicsSaveOrUpdate() {
-        if (this.state.id === "add-register") {
+        if (this.state.id === "create") {
             return <h1 className="text-center mt-3 display-3 text-primary">REGISTER CREATE</h1>
         } else
             return <h1 className="text-center mt-3 display-3 text-primary">REGISTER UPDATE</h1>
@@ -92,6 +98,7 @@ export default class RegisterCreate extends Component {
         this.setState({
             passwd: event.target.value
         });
+        console.log(this.state.passwd);
     }
 
     //email
@@ -100,6 +107,13 @@ export default class RegisterCreate extends Component {
             email: event.target.value
         });
     }
+
+     //isActive
+    onChangeCheck = (event) => {
+      this.setState({
+        check: !this.state.check
+      });
+  }
 
     //SUBMIT 
     saveOrUpdateUserRegister = (event) => {
@@ -111,10 +125,12 @@ export default class RegisterCreate extends Component {
             username: this.state.username,
             email: this.state.email,
             passwd: this.state.passwd,
+            check: this.state.check,
         }
+        console.log(this.state.check)
 
         //Eğer Create => createRegister
-        if (this.state.id === "add-register") {
+        if (this.state.id === "create") {
             UserRegisterApiServices.createRegister(registerDto).then(
                 response => {
                     if (response.status === 200) {
@@ -162,6 +178,12 @@ export default class RegisterCreate extends Component {
                             <div className="form-group mb-3">
                                 <label htmlFor="email">email</label>
                                 <input type="text" name="email" id="email" className="form-control" placeholder="Kullanıcı email" onChange={this.onChangeEmail} value={this.state.email} />
+                            </div>
+                            
+                            {/* isActive */}
+                            <div className="form-group mb-3">
+                                <label htmlFor="check">check</label>
+                                <input type="checkbox" name="check" id="check"  onChange={this.onChangeCheck}  />
                             </div>
 
                             {/* submit */}

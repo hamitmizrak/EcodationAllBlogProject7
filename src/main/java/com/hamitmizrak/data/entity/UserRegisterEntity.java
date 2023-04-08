@@ -21,9 +21,9 @@ public class UserRegisterEntity extends  BaseEntity{
     private String email;
 
     @Column(name ="user_password",columnDefinition = "varchar(255) default 'Hm123456@'")
-    private String password;
+    private String passwd;
 
-    @Column(name ="is_active",columnDefinition = "boolean default false")
-    private boolean isActive=false;
+    @Column(name ="is_check",columnDefinition = "boolean default false")
+    private String check;
 
 }
