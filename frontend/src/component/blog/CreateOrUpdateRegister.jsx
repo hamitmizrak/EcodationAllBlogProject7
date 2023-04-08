@@ -36,8 +36,6 @@ export default class CreateOrUpdateRegister extends Component {
         this.onChangePasswd = this.onChangePasswd.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeCheck = this.onChangeCheck.bind(this);
-
-        
     }
 
     //CDM 
@@ -109,7 +107,7 @@ export default class CreateOrUpdateRegister extends Component {
     }
 
      //isActive
-    onChangeCheck = (event) => {
+    onChangeCheck = () => {
       this.setState({
         check: !this.state.check
       });
