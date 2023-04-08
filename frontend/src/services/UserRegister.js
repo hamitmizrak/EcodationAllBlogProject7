@@ -15,7 +15,8 @@ class UserRegisterServices {
     // http://localhost:4444/api/v1/list
     getAllRegisters() {
         // return axios.get(REGISTER_URL.concat("/list"))
-        return axios.get(REGISTER_URL+"/list")
+        // return axios.get(REGISTER_URL+"/list")
+        return axios.get(`${REGISTER_URL}/list`)
     }
 
     // FIND
@@ -32,7 +33,8 @@ class UserRegisterServices {
     // http://localhost:4444/api/v1/register/0
     // http://localhost:4444/api/v1/register/1
     deleteRegister(id) {
-        return axios.delete(REGISTER_URL + "/register" + "/" + id);
+        //return axios.delete(REGISTER_URL + "/register" + "/" + id);
+          return axios.delete(`${REGISTER_URL}/register/${id}`)
     }
 
     // UPDATE
