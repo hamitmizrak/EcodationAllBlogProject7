@@ -37,6 +37,7 @@ export default class RegisterView extends Component {
             }
         ).catch(error => {
             console.error("is not find")
+            window.alert("Api Find")
         });
     }
 
@@ -46,8 +47,9 @@ export default class RegisterView extends Component {
     render() {
         return (
             <>
-            <div className="row">
-                <div class="card">
+            <div className="container">
+                <div className="row">
+                <div class="card mt-5 shadow" style={{padding:"2rem"}}>
                      <div class="card-body">
                         <h4 class="card-title">{this.state.registerDto.id}</h4>
                         <p class="card-text">{this.state.registerDto.username}</p>
@@ -57,9 +59,10 @@ export default class RegisterView extends Component {
                     </div>
                 </div>
             </div>
+            </div>
             </>
-        )
-    }
-}
+        ) //end return
+    } //end render
+} //end class
 
 
