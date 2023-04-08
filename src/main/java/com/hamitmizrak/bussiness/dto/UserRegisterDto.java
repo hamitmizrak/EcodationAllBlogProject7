@@ -39,7 +39,7 @@ public class UserRegisterDto {
     @NotNull(message = "{register.password.validation.constraints.NotNull.message}")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{register.password.pattern.validation.constraints.NotNull.message}")
     @Size(min =7,max=30 )
-    private String password;
+    private String passwd;
 
     // Kullanıcı aktif mi pasif mi
     private boolean isActive=false;

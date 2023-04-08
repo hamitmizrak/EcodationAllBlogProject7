@@ -5,7 +5,7 @@
 // JSX => CSS almak istiyorsanız {{}} eklemelisiniz.
 // JSX ==> Fonkiyonlarda ve props başına mutlaka this yazmalısınız.
 import React, { Component } from 'react'
-import UserRegister from '../../services/UserRegister';
+import UserRegisterApiServices from '../../services/UserRegisterApiServices';
 
 // life cycle 
 // 1-) constructor 
@@ -29,7 +29,7 @@ export default class RegisterList extends Component {
 
     //CDM : api verisi hazırlayacak
     componentDidMount() {
-        UserRegister.getAllRegisters().then(
+        UserRegisterApiServices.getAllRegisters().then(
             (response) => {
                 this.setState({
                     registerList: response.data
@@ -60,7 +60,7 @@ export default class RegisterList extends Component {
 
     //DELETE
     deleteRegister(id) {
-        UserRegister.deleteRegister(id).then(
+        UserRegisterApiServices.deleteRegister(id).then(
             (response) => {
                 this.setState({
                     registerList: this.state.registerList.filter(
@@ -104,12 +104,12 @@ export default class RegisterList extends Component {
                                             <td>{temp.id}</td>
                                             <td>{temp.username}</td>
                                             <td>{temp.email}</td>
-                                            <td>{temp.password}</td>
+                                            <td>{temp.passwd}</td>
                                             <td>{temp.isActive}</td>
                                             <td>{temp.createdDate}</td>
-                                            <td><i class="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
-                                            <td><i class="fa-solid fa-binoculars text-success" onClick={() => this.viewRegister(temp.id)}></i></td>
-                                            <td><i class="fa-solid fa-trash text-danger" onClick={() => {
+                                            <td><i className="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
+                                            <td><i className="fa-solid fa-binoculars text-success" onClick={() => this.viewRegister(temp.id)}></i></td>
+                                            <td><i className="fa-solid fa-trash text-danger" onClick={() => {
                                                 if (window.confirm("Silmek istiyor musunuz ?")) {
                                                     this.deleteRegister(temp.id)
                                                 }

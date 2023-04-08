@@ -11,7 +11,7 @@
 // 3-) CDM
 
 import React, { Component } from 'react'
-import UserRegister from '../../services/UserRegister';
+import UserRegister from '../../services/UserRegisterApiServices';
 
 export default class RegisterView extends Component {
     //constructor 
@@ -49,13 +49,13 @@ export default class RegisterView extends Component {
             <>
             <div className="container">
                 <div className="row">
-                <div class="card mt-5 shadow" style={{padding:"2rem"}}>
-                     <div class="card-body">
-                        <h4 class="card-title">{this.state.registerDto.id}</h4>
-                        <p class="card-text">{this.state.registerDto.username}</p>
-                        <p class="card-text">{this.state.registerDto.email}</p>
-                        <p class="card-text">{this.state.registerDto.isActive}</p>
-                        <p class="card-text">{this.state.registerDto.createdDate}</p>
+                <div className="card mt-5 shadow" style={{padding:"2rem"}}>
+                     <div className="card-body">
+                        <h4 className="card-title">{this.state.registerDto.id}</h4>
+                        <p className="card-text">{this.state.registerDto.username}</p>
+                        <p className="card-text">{this.state.registerDto.email}</p>
+                        <p className="card-text">{this.state.registerDto.isActive}</p>
+                        <p className="card-text">{this.state.registerDto.createdDate}</p>
                     </div>
                 </div>
             </div>

@@ -68,7 +68,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
         //eğer objenin içi doluysa
         if (userRegisterDto != null) {
             //sifreyi masklemek
-            userRegisterDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(userRegisterDto.getPassword()));
+            userRegisterDto.setPasswd(passwordEncoderBean.passwordEncoderMethod().encode(userRegisterDto.getPasswd()));
             UserRegisterEntity entityMapper = DtoToEntity(userRegisterDto);
             UserRegisterEntity userRegisterEntity = iUserRegisterRepository.save(entityMapper);
             //ID dönsün
