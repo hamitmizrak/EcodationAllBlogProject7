@@ -1,5 +1,5 @@
 // rcc ==> TAB
-//classlar state bir yapıdadır. state yazarız: statefull
+// classlar state bir yapıdadır. state yazarız: statefull
 // unutma: classta return vardır.
 // JSX => JS  almak istiyorsanız {} eklemelisiniz.
 // JSX => CSS almak istiyorsanız {{}} eklemelisiniz.
@@ -10,12 +10,12 @@ import UserRegister from '../../services/UserRegister';
 // life cycle 
 // 1-) constructor 
 // 2-) render
-// 3-)CDM
+// 3-) CDM
 export default class RegisterList extends Component {
     constructor(props) {
         super(props);
 
-        //STATE 
+        //STATE :default value
         this.state = {
             registerList: [],
         }
@@ -35,13 +35,15 @@ export default class RegisterList extends Component {
                     registerList: response.data
                 });
             }
-        )
+        ).catch(error=>{
+            console.log("List wrong")
+        });
     }
 
     //FUNCTION 
     //ADD
     addRegister() {
-        this.props.history.push("/add-register/")
+        this.props.history.push("/add-register/") // this => PHP
     }
 
     //UPDATE
@@ -65,6 +67,8 @@ export default class RegisterList extends Component {
                         registerList => registerList.id != id
                     )
                 });
+            }).catch(error=>{
+                console.log("Delete wrong")
             });
     }
 
