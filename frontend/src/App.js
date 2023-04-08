@@ -13,12 +13,14 @@ function App() {
     <React.Fragment>
       <Router>
         <Header logo="fa-solid fa-blog" />
-        <Switch>
-          <Route path="/" exact component={RegisterList}></Route>
-          <Route path="/register" component={RegisterList}></Route>
-          <Route path="/add-register/:id" component={RegisterCreate}></Route>
-          <Route path="/view-register/:id" component={RegisterView}></Route>
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route path="/" exact component={RegisterList}></Route>
+            <Route path="/register_list" component={RegisterList}></Route>
+            <Route path="/add-register/:id" component={RegisterCreate}></Route>
+            <Route path="/view-register/:id" component={RegisterView}></Route>
+          </Switch>
+        </div>
         <Footer special="Bütün Haklar Saklıdır" />
       </Router>
     </React.Fragment>

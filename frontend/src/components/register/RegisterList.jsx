@@ -1,4 +1,5 @@
 // rcc ==> TAB
+//classlar state bir yapıdadır. state yazarız: statefull
 // unutma: classta return vardır.
 // JSX => JS  almak istiyorsanız {} eklemelisiniz.
 // JSX => CSS almak istiyorsanız {{}} eklemelisiniz.

@@ -14,7 +14,8 @@ class UserRegisterServices {
     // LIST
     // http://localhost:4444/api/v1/list
     getAllRegisters() {
-        return axios.get(REGISTER_URL)
+        // return axios.get(REGISTER_URL.concat("/list"))
+        return axios.get(REGISTER_URL+"/list")
     }
 
     // FIND
