@@ -14,7 +14,6 @@ function App() {
       <Router>
         <Header logo="fa-solid fa-blog" />
         <Switch>
-          <Body />
           <Route path="/" exact component={RegisterList}></Route>
           <Route path="/register" component={RegisterList}></Route>
           <Route path="/add-register/:id" component={RegisterCreate}></Route>
