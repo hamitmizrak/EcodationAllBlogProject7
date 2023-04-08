@@ -26,3 +26,7 @@ Statefull : state(+)
 3-CDM (Component did mount ) => Api,
 4-CDU (Component Did update) => Güncelleme
 5-cwm (Component Will Un Mount) => Component içeriğini temizlemek
+
+#################################################################
+ -- JSX --
+ style={{}}

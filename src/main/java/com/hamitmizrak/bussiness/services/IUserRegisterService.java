@@ -5,7 +5,6 @@ import com.hamitmizrak.data.entity.UserRegisterEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 import java.util.Map;
 
@@ -24,20 +23,19 @@ public interface IUserRegisterService {
     public UserRegisterDto EntityToDto( UserRegisterEntity userRegisterEntity  );
     public UserRegisterEntity DtoToEntity(UserRegisterDto userRegisterDto);
 
-    //CREATE
+    // CREATE
     public UserRegisterDto createRegister(UserRegisterDto userRegisterDto);
 
-    //LIST
+    // LIST
     public List<UserRegisterDto>  getAllRegisters();
 
-    //FIND
+    // FIND
     public UserRegisterDto  getFindByRegister(Long id);
 
-    //DELETE
+    // DELETE
     public Map<String,Boolean>  deleteRegister(Long id);
 
-    //UPDATE
+    // UPDATE
     public UserRegisterDto  updateRegister(Long id,UserRegisterDto userRegisterDto);
-
 
 }

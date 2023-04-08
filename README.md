@@ -32,7 +32,7 @@ IRegisterRepository
 
 
 ---
-# Ecodation Java Full Stack Developer -7 (1 Nisan  2023)
+#  Java Full Stack Developer -7 (1 Nisan  2023)
 * [GitHub](https://github.com/hamitmizrak/EcodationAllBlogProject7)
 * 
 ### Gereksinimler

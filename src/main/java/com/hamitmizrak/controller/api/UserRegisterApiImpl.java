@@ -22,10 +22,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000") //CORS: eğer reactta package.json'da proxy yazarsam @CrossOrigin yazmasamda olur
-
 public class UserRegisterApiImpl implements IUserRegisterApi {
     //INJECTION
-
     private final  IUserRegisterService iUserRegisterService;
     //Constructor Injection
     @Autowired //Constructor Injection
