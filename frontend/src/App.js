@@ -8,11 +8,20 @@ import DetailPageRegister from './component/blog/DetailPageRegister';
 import RegisterList from './component/blog/RegisterList';
 
 
-export default  function App() {
+// Dil secenegi => withTranslation
+import { withTranslation } from 'react-i18next';
+// Dil secenegi => i18nlanguage
+import './internationalization/i18nlanguage.js'
+
+function App(props) {
   return (
     <>
       <Router> 
-      <Header logo="fa-solid fa-blog" />
+      <Header 
+      logo="fa-solid fa-blog" create="Ekle" 
+      homePage="http://localhost:3000/" language="Dil"
+      menu1={props.t('about')} menu2={props.t('register')} menu3={props.t('contact')}
+      />
          <div className="container">
           <Switch>
             <Route path="/" exact component={RegisterList}></Route>
@@ -27,3 +36,9 @@ export default  function App() {
     </>
   ); //end return 
 } // end function
+
+
+//  export default 
+//  Higher Order Component: monad componenti başka bir componentin içine  ekleyip oradanda yeni sonuclar elde etmek
+export default withTranslation()(App)
+

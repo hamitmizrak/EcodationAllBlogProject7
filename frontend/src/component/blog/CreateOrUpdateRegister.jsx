@@ -288,6 +288,7 @@ export default class CreateOrUpdateRegister extends Component {
                             placeholder="Kullanıcı username" 
                             onChange={this.onChangeAllInput} 
                             value={this.state.username}
+                            focus={true}
                             />
 
                             {/* passwd */}
@@ -310,6 +311,7 @@ export default class CreateOrUpdateRegister extends Component {
                             placeholder="Kullanıcı şifreniz" 
                             onChange={this.onChangeAllInput} 
                             value={this.state.passwd}
+                            focus={false}
                             />
 
                             {/* email */}
@@ -332,6 +334,7 @@ export default class CreateOrUpdateRegister extends Component {
                             placeholder="Kullanıcı email" 
                             onChange={this.onChangeAllInput} 
                             value={this.state.email}
+                            focus={false}
                             />
 
                             {/* isActive */}
