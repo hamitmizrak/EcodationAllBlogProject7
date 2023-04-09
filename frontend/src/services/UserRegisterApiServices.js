@@ -1,7 +1,7 @@
 //Javadan gelen Api burada saklamak
 import axios from "axios";
 
-//Sabit
+//Sabit URL
 const REGISTER_URL = "/api/v1/";
 
 class UserRegisterApiServices {

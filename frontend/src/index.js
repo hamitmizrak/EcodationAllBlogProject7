@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Register from './component/register/Register';
 import reportWebVitals from './reportWebVitals';
 
 //i18n adında ==> i18nlanguage.js eklendi
@@ -12,10 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <React.Fragment>
-      <App />
+      <Register />
     </React.Fragment>
   </React.StrictMode>
 ); //end render
-
 
 reportWebVitals();

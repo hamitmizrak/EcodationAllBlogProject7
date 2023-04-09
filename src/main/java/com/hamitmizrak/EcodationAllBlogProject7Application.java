@@ -52,6 +52,8 @@ public class EcodationAllBlogProject7Application {
 
         //Disables headless JOptionPane
         System.setProperty("java.awt.headless", "false");
+
+        //PSVM
         SpringApplication.run(EcodationAllBlogProject7Application.class, args);
     }
 }

@@ -105,7 +105,7 @@ export default class RegisterList extends Component {
                                     this.state.registerList.map(temp =>
                                         <tr key={temp.id}>
                                             <td>{temp.id}</td>
-                                            <td>{temp.username}</td>
+                                            <td>{temp.uname}</td>
                                             <td>{temp.email}</td>
                                             <td>{temp.passwd.substring(0,5)}</td>
                                             <td>{temp.check}</td>

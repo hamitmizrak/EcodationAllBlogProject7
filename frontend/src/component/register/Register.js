@@ -1,19 +1,18 @@
-
-import './App.css';
-import Header from './component/Header';
-import Footer from './component/Footer';
+import './Register.css';
+import Header from '../Header';
+import Footer from '../Footer';
 import {BrowserRouter as Router,Route,Switch } from 'react-router-dom';
-import CreateOrUpdateRegister from './component/blog/CreateOrUpdateRegister';
-import DetailPageRegister from './component/blog/DetailPageRegister';
-import RegisterList from './component/blog/RegisterList';
-
+import RegisterCreateOrUpdate from './RegisterCreateOrUpdate';
+import RegisterDetailPage from './RegisterDetailPage';
+import RegisterList from './RegisterList';
 
 // Dil secenegi => withTranslation
 import { withTranslation } from 'react-i18next';
-// Dil secenegi => i18nlanguage
-import './internationalization/i18nlanguage.js'
 
-function App(props) {
+// Dil secenegi => i18nlanguage
+import '../../internationalization/i18nlanguage.js'
+
+function Register(props) {
   return (
     <>
       <Router> 
@@ -26,8 +25,8 @@ function App(props) {
           <Switch>
             <Route path="/" exact component={RegisterList}></Route>
             <Route path="/register"  component={RegisterList}></Route>
-            <Route path="/register_add/:id"  component={CreateOrUpdateRegister}></Route>
-            <Route path="/register_view/:id"  component={DetailPageRegister}></Route>
+            <Route path="/register_add/:id"  component={RegisterCreateOrUpdate}></Route>
+            <Route path="/register_view/:id"  component={RegisterDetailPage}></Route>
             {/* <Route component={NotFound}/> */}
           </Switch>
         </div>
@@ -40,5 +39,5 @@ function App(props) {
 
 //  export default 
 //  Higher Order Component: monad componenti başka bir componentin içine  ekleyip oradanda yeni sonuclar elde etmek
-export default withTranslation()(App)
+export default withTranslation()(Register)
 

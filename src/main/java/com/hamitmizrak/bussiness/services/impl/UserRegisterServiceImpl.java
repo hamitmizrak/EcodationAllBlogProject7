@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -46,8 +45,8 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
 
     //App Information
     @Override
-    public ResponseEntity<?> getAppInformation(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public void getAppInformation(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     // MODEL MAPPER
@@ -143,7 +142,7 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
                 .orElseThrow(() -> new ResourceNotFoundException(id + " nolu id bulunamadı"));
         //Obje doluysa silsin
         if(findEntity!=null){
-            findEntity.setUsername(userRegisterDto.getUsername());
+            findEntity.setUname(userRegisterDto.getUname());
             findEntity.setEmail(userRegisterDto.getEmail());
             findEntity.setCheck(userRegisterDto.getCheck());
             findEntity.setPasswd(passwordEncoderBean.passwordEncoderMethod().encode(findEntity.getPasswd()));

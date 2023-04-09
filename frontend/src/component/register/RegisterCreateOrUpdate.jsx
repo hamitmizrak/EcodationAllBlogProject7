@@ -14,8 +14,7 @@ import React, { Component } from 'react'
 import UserRegisterApiServices from '../../services/UserRegisterApiServices';
 import ResuabilityUserRegisterIInput from '../../resuability/ResuabilityUserRegisterIInput';
 
-
-export default class CreateOrUpdateRegister extends Component {
+export default class RegisterCreateOrUpdate extends Component {
     //constructor 
     constructor(props) {
         super(props);
@@ -23,7 +22,7 @@ export default class CreateOrUpdateRegister extends Component {
         //STATE :default value
         this.state = {
             id: this.props.match.params.id,
-            username: null,
+            uname: null,
             email: null,
             passwd: null,
             check: false,//Kullanıcı aktif veya pasif olmasını sağlamak
@@ -45,7 +44,7 @@ export default class CreateOrUpdateRegister extends Component {
         this.onChangeAllInput = this.onChangeAllInput.bind(this);
         //Read
         this.onChangeRead = this.onChangeRead.bind(this);
-    }
+    } //end constructor
 
     //CDM 
     componentDidMount() {
@@ -61,7 +60,7 @@ export default class CreateOrUpdateRegister extends Component {
                     const registerDto = response.data;
                     console.log(registerDto);
                     this.setState({
-                        username: registerDto.username,
+                        uname: registerDto.uname,
                         email: registerDto.email,
                         passwd: registerDto.passwd,
                         check: !registerDto.check,
@@ -93,11 +92,11 @@ export default class CreateOrUpdateRegister extends Component {
     }
 
     //FORM : bunların yerine artık destructing kullanıyorum.
-    //username
+    //uname
     /*
     onChangeUsername = (event) => {
         this.setState({
-            username: event.target.value
+            uname: event.target.value
         });
     }
 
@@ -126,7 +125,7 @@ export default class CreateOrUpdateRegister extends Component {
 
 
     // 1.YOL => destructing: az kod çok iş
-    // Bütün Change'lerin yaptığını yapacak(username,password,email,isActive)
+    // Bütün Change'lerin yaptığını yapacak(uname,password,email,isActive)
     /*onChangeAllInput(event){
     const key=event.target.name;
     const value=event.target.value;
@@ -137,7 +136,7 @@ export default class CreateOrUpdateRegister extends Component {
     }*/
 
     // 2.YOL => Object destructing: az kod çok iş
-    // Bütün Change'lerin yaptığını yapacak(username,password,email,isActive)
+    // Bütün Change'lerin yaptığını yapacak(uname,password,email,isActive)
     // destructing: ortak neler var sorusuna cevap bulmaya çalış.
     onChangeAllInput = (event) => {
         //const key=event.target.name;
@@ -173,14 +172,14 @@ export default class CreateOrUpdateRegister extends Component {
 
         //CDM => registerDto doldurmuştuk
         //1.YOL destructing
-        const { username, email, passwd, check } = this.state;
+        const { uname, email, passwd, check } = this.state;
         const registerDto = {
-            username, email, passwd, check
+            uname, email, passwd, check
         }
         //2.YOL
         /*
         const registerDto = {
-            username: this.state.username,
+            uname: this.state.uname,
             email: this.state.email,
             passwd: this.state.passwd,
             check: this.state.check,
@@ -237,6 +236,9 @@ export default class CreateOrUpdateRegister extends Component {
             UserRegisterApiServices.updateRegister(this.state.id, registerDto).then(
                 response => {
                     if (response.status === 200) {
+                        this.setState({
+                            multipleRequestIsCloseSubmit: false
+                        })
                         this.props.history.push("/")
                     }
                 } // end response
@@ -260,8 +262,8 @@ export default class CreateOrUpdateRegister extends Component {
         /*JavaScript kodları buraya yazacağım*/
         /* object destructing */
         const{multipleRequestIsCloseSubmit,validationErrors}=this.state;
-        //this.state.validationErrors.username
-        const{username,email,passwd}=validationErrors 
+        //this.state.validationErrors.uname
+        const{uname,email,passwd}=validationErrors
         //RETURN
         return (
             <>
@@ -269,25 +271,25 @@ export default class CreateOrUpdateRegister extends Component {
                 <div className="container">
                     <div className="row">
                         <form action="">
-                            {/* username: normal resuability olmayan */}
+                            {/* uname: normal resuability olmayan */}
                             {/* <div className="form-group mb-3">
-                                <label htmlFor="username">Username</label>
+                                <label htmlFor="uname">uname</label>
                                 <input type="text" 
-                                name="username" id="username" 
-                                className={username?"is-invalid form-control mb-3":"form-control mb-3"}
+                                name="uname" id="uname"
+                                className={uname?"is-invalid form-control mb-3":"form-control mb-3"}
                                 placeholder="Kullanıcı adınız" 
                                 onChange={this.onChangeAllInput} 
-                                value={this.state.username} autoFocus/>
-                                <div className="invalid-feedback">{username}</div>
+                                value={this.state.uname} autoFocus/>
+                                <div className="invalid-feedback">{uname}</div>
                             </div> */}
                              <ResuabilityUserRegisterIInput 
                             type="text" 
-                            name="username"  
-                            id="username"
-                            error={username}
-                            placeholder="Kullanıcı username" 
+                            name="uname"
+                            id="uname"
+                            error={uname}
+                            placeholder="Kullanıcı uname"
                             onChange={this.onChangeAllInput} 
-                            value={this.state.username}
+                            value={this.state.uname}
                             focus={true}
                             />
 
@@ -359,7 +361,7 @@ export default class CreateOrUpdateRegister extends Component {
                                 <button
                                     className="btn btn-primary ms-2"
                                     onClick={this.saveOrUpdateUserRegister}
-                                    disabled={multipleRequestIsCloseSubmit}
+                                    disabled={(multipleRequestIsCloseSubmit||!this.state.read)}
                                 > {multipleRequestIsCloseSubmit ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""} Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
