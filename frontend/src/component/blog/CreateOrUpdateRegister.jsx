@@ -27,6 +27,7 @@ export default class CreateOrUpdateRegister extends Component {
             passwd: null,
             check: false,
             read:false,
+            multipleRequestIsCloseSubmit:false,
         }
 
         //BIND
@@ -180,16 +181,27 @@ export default class CreateOrUpdateRegister extends Component {
         */
         console.log(this.state.check)
 
+        //submit butonuna aynı anda basıldığında sadece 1 kere kaydetsin
+        this.setState({
+            multipleRequestIsCloseSubmit:true
+        })
+
         //Eğer Create => createRegister
         if (this.state.id === "create") {
             UserRegisterApiServices.createRegister(registerDto).then(
                 response => {
+                    this.setState({
+                        multipleRequestIsCloseSubmit:false
+                    })
                     if (response.status === 200) {
                         this.props.history.push("/")
                     }
                 }
             ).catch(err => {
                 console.log("Create Wrong" + err.response.data)
+                this.setState({
+                    multipleRequestIsCloseSubmit:false
+                })
             })
         } else {//UPDATE
             UserRegisterApiServices.updateRegister(this.state.id, registerDto).then(
@@ -246,7 +258,8 @@ export default class CreateOrUpdateRegister extends Component {
                             {/* submit */}
                             <div className="form-group mt-3 mb-3">
                                 <button className="btn btn-danger" onClick={this.cancel.bind}>Temizle</button>
-                                <button className="btn btn-primary ms-2" onClick={this.saveOrUpdateUserRegister} disabled={!this.state.read}>Gönder</button>
+                                {/* !this.state.read && */}
+                                <button className="btn btn-primary ms-2" onClick={this.saveOrUpdateUserRegister} disabled={this.state.multipleRequestIsCloseSubmit}>Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
                         </form>
