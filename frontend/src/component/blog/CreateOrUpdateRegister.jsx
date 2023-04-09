@@ -22,9 +22,9 @@ export default class CreateOrUpdateRegister extends Component {
         //STATE :default value
         this.state = {
             id: this.props.match.params.id,
-            username: "",
-            email: "",
-            passwd: "",
+            username: null,
+            email: null,
+            passwd: null,
             check: false
         }
 
@@ -37,7 +37,7 @@ export default class CreateOrUpdateRegister extends Component {
         // this.onChangePasswd = this.onChangePasswd.bind(this);
         // this.onChangeEmail = this.onChangeEmail.bind(this);
         // this.onChangeCheck = this.onChangeCheck.bind(this);
-       this.onChangeAllInput=this.onChangeAllInput.bind(this);
+        this.onChangeAllInput = this.onChangeAllInput.bind(this);
     }
 
     //CDM 
@@ -117,15 +117,29 @@ export default class CreateOrUpdateRegister extends Component {
     }
     */
 
+
+    // 1.YOL => destructing: az kod çok iş
     // Bütün Change'lerin yaptığını yapacak(username,password,email,isActive)
-    // destructing: az kod çok iş
-    onChangeAllInput(event){
+    /*onChangeAllInput(event){
     const key=event.target.name;
     const value=event.target.value;
     console.log(key+" => "+value)
     this.setState({
         [key]:value
     })
+    }*/
+
+    // 2.YOL => Object destructing: az kod çok iş
+    // Bütün Change'lerin yaptığını yapacak(username,password,email,isActive)
+    // destructing: ortak neler var sorusuna cevap bulmaya çalış.
+    onChangeAllInput = (event) => {
+        //const key=event.target.name;
+        //const value=event.target.value;
+        const { name, value } = event.target
+        console.log(name + " => " + value)
+        this.setState({
+            [name]: value
+        })
     }
 
     //SUBMIT 
