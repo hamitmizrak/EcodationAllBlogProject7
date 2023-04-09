@@ -22,7 +22,7 @@ import React from 'react'
 //function
 export default function ResuabilityUserRegisterIInput(props) {
     //object destructing 
-    const { type, name, id, placeholder, onChange, error, focus } = props;
+    const { type, name, id, placeholder, onChange,value, error, focus } = props;
     // Valid için 
     const className = name ? "is-invalid form-control mb-3" : "form-control mb-3";
 
@@ -38,7 +38,7 @@ export default function ResuabilityUserRegisterIInput(props) {
                     className={className}
                     placeholder={placeholder}
                     onChange={onChange}
-                   
+                    value={value}
                     autoFocus={focus} />
                 <div className="invalid-feedback">{error}</div>
             </div>

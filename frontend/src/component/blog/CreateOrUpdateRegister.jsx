@@ -270,7 +270,7 @@ export default class CreateOrUpdateRegister extends Component {
                     <div className="row">
                         <form action="">
                             {/* username: normal resuability olmayan */}
-                            <div className="form-group mb-3">
+                            {/* <div className="form-group mb-3">
                                 <label htmlFor="username">Username</label>
                                 <input type="text" 
                                 name="username" id="username" 
@@ -279,7 +279,16 @@ export default class CreateOrUpdateRegister extends Component {
                                 onChange={this.onChangeAllInput} 
                                 value={this.state.username} autoFocus/>
                                 <div className="invalid-feedback">{username}</div>
-                            </div>
+                            </div> */}
+                             <ResuabilityUserRegisterIInput 
+                            type="text" 
+                            name="username"  
+                            id="username"
+                            error={username}
+                            placeholder="Kullanıcı username" 
+                            onChange={this.onChangeAllInput} 
+                            value={this.state.username}
+                            />
 
                             {/* passwd */}
                             {/* <div className="form-group mb-3">
@@ -297,12 +306,14 @@ export default class CreateOrUpdateRegister extends Component {
                             type="password" 
                             name="passwd"  
                             id="passwd"
+                            error={passwd}
                             placeholder="Kullanıcı şifreniz" 
                             onChange={this.onChangeAllInput} 
+                            value={this.state.passwd}
                             />
 
                             {/* email */}
-                            <div className="form-group mb-3">
+                            {/* <div className="form-group mb-3">
                                 <label htmlFor="email">email</label>
                                 <input type="text" 
                                 name="email" id="email" 
@@ -311,7 +322,17 @@ export default class CreateOrUpdateRegister extends Component {
                                 onChange={this.onChangeAllInput} 
                                 value={this.state.email} />
                                 <div className="invalid-feedback">{email}</div>
-                            </div>
+                            </div> */}
+
+                            <ResuabilityUserRegisterIInput 
+                            type="email" 
+                            name="email"  
+                            id="email"
+                            error={email}
+                            placeholder="Kullanıcı email" 
+                            onChange={this.onChangeAllInput} 
+                            value={this.state.email}
+                            />
 
                             {/* isActive */}
                             <div className="form-group mb-3">
