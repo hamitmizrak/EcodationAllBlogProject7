@@ -25,19 +25,24 @@ export default class CreateOrUpdateRegister extends Component {
             username: null,
             email: null,
             passwd: null,
-            check: false
+            check: false,
+            read:false,
         }
 
         //BIND
         this.homePage = this.homePage.bind(this);
         // Satırda yapacağım => this.cancel = this.cancel.bind(this);
         this.titleDynamicsSaveOrUpdate = this.titleDynamicsSaveOrUpdate.bind(this);
+
         //Destructing kullandığım için bunları kapattım.
         // this.onChangeUsername = this.onChangeUsername.bind(this);
         // this.onChangePasswd = this.onChangePasswd.bind(this);
         // this.onChangeEmail = this.onChangeEmail.bind(this);
         // this.onChangeCheck = this.onChangeCheck.bind(this);
         this.onChangeAllInput = this.onChangeAllInput.bind(this);
+
+        this.onChangeRead=this.onChangeRead.bind(this);
+
     }
 
     //CDM 
@@ -142,6 +147,15 @@ export default class CreateOrUpdateRegister extends Component {
         })
     }
 
+    // okunmadan submit butonu aktif olunmasın
+    onChangeRead=(event)=>{
+     this.state.read=event.target.checked;
+     console.log(this.state.read)
+     this.setState({
+        read:event.target.checked
+     });
+    }
+
     //SUBMIT 
     // destructing: Object destructing: az kod çok iş
     // destructing: ortak neler var sorusuna cevap bulmaya çalış.
@@ -223,10 +237,16 @@ export default class CreateOrUpdateRegister extends Component {
                                 <input type="checkbox" name="check" id="check" onChange={this.onChangeCheck} />
                             </div>
 
+                             {/* read */}
+                             <div className="form-group mb-3">
+                                <label htmlFor="read">Are you reading ?</label>
+                                <input type="checkbox" name="read" id="read" onChange={this.onChangeRead} />
+                            </div>
+
                             {/* submit */}
                             <div className="form-group mt-3 mb-3">
                                 <button className="btn btn-danger" onClick={this.cancel.bind}>Temizle</button>
-                                <button className="btn btn-primary ms-2" onClick={this.saveOrUpdateUserRegister}>Gönder</button>
+                                <button className="btn btn-primary ms-2" onClick={this.saveOrUpdateUserRegister} disabled={!this.state.read}>Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
                         </form>
