@@ -26,8 +26,8 @@ export default class CreateOrUpdateRegister extends Component {
             email: null,
             passwd: null,
             check: false,
-            read:false,
-            multipleRequestIsCloseSubmit:false,
+            read: false,
+            multipleRequestIsCloseSubmit: false,
         }
 
         //BIND
@@ -42,7 +42,7 @@ export default class CreateOrUpdateRegister extends Component {
         // this.onChangeCheck = this.onChangeCheck.bind(this);
         this.onChangeAllInput = this.onChangeAllInput.bind(this);
 
-        this.onChangeRead=this.onChangeRead.bind(this);
+        this.onChangeRead = this.onChangeRead.bind(this);
 
     }
 
@@ -149,12 +149,12 @@ export default class CreateOrUpdateRegister extends Component {
     }
 
     // okunmadan submit butonu aktif olunmasın
-    onChangeRead=(event)=>{
-     this.state.read=event.target.checked;
-     console.log(this.state.read)
-     this.setState({
-        read:event.target.checked
-     });
+    onChangeRead = (event) => {
+        this.state.read = event.target.checked;
+        console.log(this.state.read)
+        this.setState({
+            read: event.target.checked
+        });
     }
 
     //SUBMIT 
@@ -166,9 +166,9 @@ export default class CreateOrUpdateRegister extends Component {
 
         //CDM => registerDto doldurmuştuk
         //1.YOL destructing
-        const {username,email,passwd,check}=this.state;
+        const { username, email, passwd, check } = this.state;
         const registerDto = {
-            username,email,passwd,check
+            username, email, passwd, check
         }
         //2.YOL
         /*
@@ -183,24 +183,24 @@ export default class CreateOrUpdateRegister extends Component {
 
         //submit butonuna aynı anda basıldığında sadece 1 kere kaydetsin
         this.setState({
-            multipleRequestIsCloseSubmit:true
+            multipleRequestIsCloseSubmit: true
         })
 
         //Eğer Create => createRegister
         if (this.state.id === "create") {
             UserRegisterApiServices.createRegister(registerDto).then(
                 response => {
-                    this.setState({
-                        multipleRequestIsCloseSubmit:false
-                    })
                     if (response.status === 200) {
+                        this.setState({
+                            multipleRequestIsCloseSubmit: false
+                        })
                         this.props.history.push("/")
                     }
                 }
             ).catch(err => {
                 console.log("Create Wrong" + err.response.data)
                 this.setState({
-                    multipleRequestIsCloseSubmit:false
+                    multipleRequestIsCloseSubmit: false
                 })
             })
         } else {//UPDATE
@@ -249,8 +249,8 @@ export default class CreateOrUpdateRegister extends Component {
                                 <input type="checkbox" className="form-check-input" name="check" id="check" onChange={this.onChangeCheck} />
                             </div>
 
-                             {/* read */}
-                             <div className="form-group mb-3">
+                            {/* read */}
+                            <div className="form-group mb-3">
                                 <label className="form-check-label me-2" htmlFor="read">Are you reading ?</label>
                                 <input type="checkbox" className="form-check-input" name="read" id="read" onChange={this.onChangeRead} />
                             </div>
@@ -259,7 +259,11 @@ export default class CreateOrUpdateRegister extends Component {
                             <div className="form-group mt-3 mb-3">
                                 <button className="btn btn-danger" onClick={this.cancel.bind}>Temizle</button>
                                 {/* !this.state.read && */}
-                                <button className="btn btn-primary ms-2" onClick={this.saveOrUpdateUserRegister} disabled={this.state.multipleRequestIsCloseSubmit}>Gönder</button>
+                                <button 
+                                className="btn btn-primary ms-2" 
+                                onClick={this.saveOrUpdateUserRegister} 
+                                disabled={this.state.multipleRequestIsCloseSubmit}
+                                > {this.state.multipleRequestIsCloseSubmit?<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>:""} Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
                         </form>
