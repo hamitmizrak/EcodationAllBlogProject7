@@ -85,7 +85,7 @@ export default class CreateOrUpdateRegister extends Component {
             return <h1 className="text-center mt-3 display-3 text-primary">REGISTER UPDATE</h1>
     }
 
-    //FORM
+    //FORM : bunların yerine artık destructing kullanıyorum.
     //username
     /*
     onChangeUsername = (event) => {
@@ -143,17 +143,27 @@ export default class CreateOrUpdateRegister extends Component {
     }
 
     //SUBMIT 
+    // destructing: Object destructing: az kod çok iş
+    // destructing: ortak neler var sorusuna cevap bulmaya çalış.
     saveOrUpdateUserRegister = (event) => {
         //browser sen dur !!! birşey yapma 
         event.preventDefault();
 
         //CDM => registerDto doldurmuştuk
+        //1.YOL destructing
+        const {username,email,passwd,check}=this.state;
+        const registerDto = {
+            username,email,passwd,check
+        }
+        //2.YOL
+        /*
         const registerDto = {
             username: this.state.username,
             email: this.state.email,
             passwd: this.state.passwd,
             check: this.state.check,
         }
+        */
         console.log(this.state.check)
 
         //Eğer Create => createRegister
