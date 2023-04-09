@@ -12,6 +12,7 @@
 
 import React, { Component } from 'react'
 import UserRegisterApiServices from '../../services/UserRegisterApiServices';
+import ResuabilityUserRegisterIInput from '../../resuability/ResuabilityUserRegisterIInput';
 
 
 export default class CreateOrUpdateRegister extends Component {
@@ -268,7 +269,7 @@ export default class CreateOrUpdateRegister extends Component {
                 <div className="container">
                     <div className="row">
                         <form action="">
-                            {/* username */}
+                            {/* username: normal resuability olmayan */}
                             <div className="form-group mb-3">
                                 <label htmlFor="username">Username</label>
                                 <input type="text" 
@@ -281,7 +282,7 @@ export default class CreateOrUpdateRegister extends Component {
                             </div>
 
                             {/* passwd */}
-                            <div className="form-group mb-3">
+                            {/* <div className="form-group mb-3">
                                 <label htmlFor="passwd">passwd</label>
                                 <input type="text" 
                                 name="passwd" id="passwd" 
@@ -290,7 +291,15 @@ export default class CreateOrUpdateRegister extends Component {
                                 onChange={this.onChangeAllInput} 
                                 value={this.state.passwd} />
                                   <div className="invalid-feedback">{passwd}</div>
-                            </div>
+                            </div> */}
+
+                            <ResuabilityUserRegisterIInput 
+                            type="password" 
+                            name="passwd"  
+                            id="passwd"
+                            placeholder="Kullanıcı şifreniz" 
+                            onChange={this.onChangeAllInput} 
+                            />
 
                             {/* email */}
                             <div className="form-group mb-3">
