@@ -32,12 +32,10 @@ export default class CreateOrUpdateRegister extends Component {
         this.homePage = this.homePage.bind(this);
         // Satırda yapacağım => this.cancel = this.cancel.bind(this);
         this.titleDynamicsSaveOrUpdate = this.titleDynamicsSaveOrUpdate.bind(this);
-        //Destructing kullandığım için bunları kapattım.
-        // this.onChangeUsername = this.onChangeUsername.bind(this);
-        // this.onChangePasswd = this.onChangePasswd.bind(this);
-        // this.onChangeEmail = this.onChangeEmail.bind(this);
-        // this.onChangeCheck = this.onChangeCheck.bind(this);
-       this.onChangeAllInput=this.onChangeAllInput.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePasswd = this.onChangePasswd.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeCheck = this.onChangeCheck.bind(this);
     }
 
     //CDM 
@@ -87,7 +85,6 @@ export default class CreateOrUpdateRegister extends Component {
 
     //FORM
     //username
-    /*
     onChangeUsername = (event) => {
         this.setState({
             username: event.target.value
@@ -114,18 +111,6 @@ export default class CreateOrUpdateRegister extends Component {
         this.setState({
             check: !this.state.check
         });
-    }
-    */
-
-    // Bütün Change'lerin yaptığını yapacak(username,password,email,isActive)
-    // destructing: az kod çok iş
-    onChangeAllInput(event){
-    const key=event.target.name;
-    const value=event.target.value;
-    console.log(key+" => "+value)
-    this.setState({
-        [key]:value
-    })
     }
 
     //SUBMIT 
@@ -178,19 +163,19 @@ export default class CreateOrUpdateRegister extends Component {
                             {/* username */}
                             <div className="form-group mb-3">
                                 <label htmlFor="username">Username</label>
-                                <input type="text" name="username" id="username" className="form-control" placeholder="Kullanıcı adınız" onChange={this.onChangeAllInput} value={this.state.username} />
+                                <input type="text" name="username" id="username" className="form-control" placeholder="Kullanıcı adınız" onChange={this.onChangeUsername} value={this.state.username} />
                             </div>
 
                             {/* passwd */}
                             <div className="form-group mb-3">
                                 <label htmlFor="passwd">passwd</label>
-                                <input type="text" name="passwd" id="passwd" className="form-control" placeholder="Kullanıcı şifreniz" onChange={this.onChangeAllInput} value={this.state.passwd} />
+                                <input type="text" name="passwd" id="passwd" className="form-control" placeholder="Kullanıcı şifreniz" onChange={this.onChangePasswd} value={this.state.passwd} />
                             </div>
 
                             {/* email */}
                             <div className="form-group mb-3">
                                 <label htmlFor="email">email</label>
-                                <input type="text" name="email" id="email" className="form-control" placeholder="Kullanıcı email" onChange={this.onChangeAllInput} value={this.state.email} />
+                                <input type="text" name="email" id="email" className="form-control" placeholder="Kullanıcı email" onChange={this.onChangeEmail} value={this.state.email} />
                             </div>
 
                             {/* isActive */}
