@@ -219,7 +219,7 @@ export default class CreateOrUpdateRegister extends Component {
 
                             {/* isActive */}
                             <div className="form-group mb-3">
-                                <label htmlFor="check">check</label>
+                                <label htmlFor="check">Register Active ?</label>
                                 <input type="checkbox" name="check" id="check" onChange={this.onChangeCheck} />
                             </div>
 
