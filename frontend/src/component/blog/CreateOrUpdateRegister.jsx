@@ -239,8 +239,17 @@ export default class CreateOrUpdateRegister extends Component {
                         this.props.history.push("/")
                     }
                 } // end response
-            ).catch(err => {
-                console.log("Update Wrong" + err.response.data)
+            ).catch(error => {
+                if (error.response.data.validationErrors) {
+                    this.setState({
+                        validationErrors: error.response.data.validationErrors
+                    });
+                    console.error("HATA =>" + error.response.data.validationErrors)
+                }
+                console.log("Update Wrong" + error)
+                this.setState({
+                    multipleRequestIsCloseSubmit: false
+                })
             })// endcatch
         } // end else 
     } //end saveOrUpdateUserRegister
@@ -259,7 +268,6 @@ export default class CreateOrUpdateRegister extends Component {
                 <div className="container">
                     <div className="row">
                         <form action="">
-
                             {/* username */}
                             <div className="form-group mb-3">
                                 <label htmlFor="username">Username</label>
