@@ -25,9 +25,10 @@ export default class CreateOrUpdateRegister extends Component {
             username: null,
             email: null,
             passwd: null,
-            check: false,
-            read: false,
-            multipleRequestIsCloseSubmit: false,
+            check: false,//Kullanıcı aktif veya pasif olmasını sağlamak
+            read: false,//okumadan submit yapmayalım
+            multipleRequestIsCloseSubmit: false, //çoklu istekleri kapatmak
+            validationErrors: {} //backentten gelen hata isteklerini yakalamak
         }
 
         //BIND
@@ -142,8 +143,14 @@ export default class CreateOrUpdateRegister extends Component {
         //const value=event.target.value;
         const { name, value } = event.target
         console.log(name + " => " + value)
+
+        //Hataları yakalamak için burada çalışacağız.
+        //ES ...(üç nokta=> copy için kullanacağım)
+        const validationErrors = { ...this.state.validationErrors };
+        validationErrors[name] = undefined;
         this.setState({
-            [name]: value
+            [name]: value,
+            validationErrors
         })
     }
 
@@ -213,6 +220,12 @@ export default class CreateOrUpdateRegister extends Component {
                     this.props.history.push("/")
                 }
             } catch (error) {
+                if (error.response.data.validationErrors) {
+                    this.setState({
+                        validationErrors: error.response.data.validationErrors
+                    });
+                    console.error("HATA =>" + error.response.data.validationErrors)
+                }
                 console.log("Create Wrong" + error)
                 this.setState({
                     multipleRequestIsCloseSubmit: false
@@ -234,6 +247,12 @@ export default class CreateOrUpdateRegister extends Component {
 
     //RENDER
     render() {
+        /*JavaScript kodları buraya yazacağım*/
+        /* object destructing */
+        const{multipleRequestIsCloseSubmit,validationErrors}=this.state;
+        //this.state.validationErrors.username
+        const{username,email,passwd}=validationErrors 
+        //RETURN
         return (
             <>
                 {this.titleDynamicsSaveOrUpdate()}
@@ -244,25 +263,46 @@ export default class CreateOrUpdateRegister extends Component {
                             {/* username */}
                             <div className="form-group mb-3">
                                 <label htmlFor="username">Username</label>
-                                <input type="text" name="username" id="username" className="form-control" placeholder="Kullanıcı adınız" onChange={this.onChangeAllInput} value={this.state.username} />
+                                <input type="text" 
+                                name="username" id="username" 
+                                className={username?"is-invalid form-control mb-3":"form-control mb-3"}
+                                placeholder="Kullanıcı adınız" 
+                                onChange={this.onChangeAllInput} 
+                                value={this.state.username} autoFocus/>
+                                <div className="invalid-feedback">{username}</div>
                             </div>
 
                             {/* passwd */}
                             <div className="form-group mb-3">
                                 <label htmlFor="passwd">passwd</label>
-                                <input type="text" name="passwd" id="passwd" className="form-control" placeholder="Kullanıcı şifreniz" onChange={this.onChangeAllInput} value={this.state.passwd} />
+                                <input type="text" 
+                                name="passwd" id="passwd" 
+                                className={passwd?"is-invalid form-control mb-3":"form-control mb-3"}
+                                placeholder="Kullanıcı şifreniz" 
+                                onChange={this.onChangeAllInput} 
+                                value={this.state.passwd} />
+                                  <div className="invalid-feedback">{passwd}</div>
                             </div>
 
                             {/* email */}
                             <div className="form-group mb-3">
                                 <label htmlFor="email">email</label>
-                                <input type="text" name="email" id="email" className="form-control" placeholder="Kullanıcı email" onChange={this.onChangeAllInput} value={this.state.email} />
+                                <input type="text" 
+                                name="email" id="email" 
+                                className={email?"is-invalid form-control mb-3":"form-control mb-3"}
+                                placeholder="Kullanıcı email" 
+                                onChange={this.onChangeAllInput} 
+                                value={this.state.email} />
+                                <div className="invalid-feedback">{email}</div>
                             </div>
 
                             {/* isActive */}
                             <div className="form-group mb-3">
                                 <label className="form-check-label me-3" htmlFor="check">Register Active ?</label>
-                                <input type="checkbox" className="form-check-input" name="check" id="check" onChange={this.onChangeCheck} />
+                                <input type="checkbox" 
+                                name="check" id="check" 
+                                className="form-check-input" 
+                                onChange={this.onChangeCheck} />
                             </div>
 
                             {/* read */}
@@ -278,8 +318,8 @@ export default class CreateOrUpdateRegister extends Component {
                                 <button
                                     className="btn btn-primary ms-2"
                                     onClick={this.saveOrUpdateUserRegister}
-                                    disabled={this.state.multipleRequestIsCloseSubmit}
-                                > {this.state.multipleRequestIsCloseSubmit ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""} Gönder</button>
+                                    disabled={multipleRequestIsCloseSubmit}
+                                > {multipleRequestIsCloseSubmit ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""} Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
                         </form>
