@@ -233,14 +233,14 @@ export default class CreateOrUpdateRegister extends Component {
 
                             {/* isActive */}
                             <div className="form-group mb-3">
-                                <label htmlFor="check">Register Active ?</label>
-                                <input type="checkbox" name="check" id="check" onChange={this.onChangeCheck} />
+                                <label className="form-check-label me-3" htmlFor="check">Register Active ?</label>
+                                <input type="checkbox" className="form-check-input" name="check" id="check" onChange={this.onChangeCheck} />
                             </div>
 
                              {/* read */}
                              <div className="form-group mb-3">
-                                <label htmlFor="read">Are you reading ?</label>
-                                <input type="checkbox" name="read" id="read" onChange={this.onChangeRead} />
+                                <label className="form-check-label me-2" htmlFor="read">Are you reading ?</label>
+                                <input type="checkbox" className="form-check-input" name="read" id="read" onChange={this.onChangeRead} />
                             </div>
 
                             {/* submit */}
