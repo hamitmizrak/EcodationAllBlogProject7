@@ -107,7 +107,7 @@ export default class RegisterList extends Component {
                                             <td>{temp.id}</td>
                                             <td>{temp.username}</td>
                                             <td>{temp.email}</td>
-                                            <td>{temp.passwd}</td>
+                                            <td>{temp.passwd.substring(0,5)}</td>
                                             <td>{temp.check}</td>
                                             <td>{temp.createdDate}</td>
                                             <td><i style={{ cursor: "pointer" }} className="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
