@@ -41,9 +41,8 @@ export default class CreateOrUpdateRegister extends Component {
         // this.onChangeEmail = this.onChangeEmail.bind(this);
         // this.onChangeCheck = this.onChangeCheck.bind(this);
         this.onChangeAllInput = this.onChangeAllInput.bind(this);
-
+        //Read
         this.onChangeRead = this.onChangeRead.bind(this);
-
     }
 
     //CDM 
@@ -160,7 +159,7 @@ export default class CreateOrUpdateRegister extends Component {
     //SUBMIT 
     // destructing: Object destructing: az kod çok iş
     // destructing: ortak neler var sorusuna cevap bulmaya çalış.
-    saveOrUpdateUserRegister = (event) => {
+    saveOrUpdateUserRegister = async (event) => {
         //browser sen dur !!! birşey yapma 
         event.preventDefault();
 
@@ -188,6 +187,7 @@ export default class CreateOrUpdateRegister extends Component {
 
         //Eğer Create => createRegister
         if (this.state.id === "create") {
+            /*1.YOL: Promise 
             UserRegisterApiServices.createRegister(registerDto).then(
                 response => {
                     if (response.status === 200) {
@@ -202,8 +202,24 @@ export default class CreateOrUpdateRegister extends Component {
                 this.setState({
                     multipleRequestIsCloseSubmit: false
                 })
-            })
+            })*/
+            /*2.YOL*/
+            try {
+                const response = await UserRegisterApiServices.createRegister(registerDto);
+                if (response.status === 200) {
+                    this.setState({
+                        multipleRequestIsCloseSubmit: false
+                    })
+                    this.props.history.push("/")
+                }
+            } catch (error) {
+                console.log("Create Wrong" + error)
+                this.setState({
+                    multipleRequestIsCloseSubmit: false
+                })
+            }
         } else {//UPDATE
+            //Promise kullandık
             UserRegisterApiServices.updateRegister(this.state.id, registerDto).then(
                 response => {
                     if (response.status === 200) {
@@ -259,11 +275,11 @@ export default class CreateOrUpdateRegister extends Component {
                             <div className="form-group mt-3 mb-3">
                                 <button className="btn btn-danger" onClick={this.cancel.bind}>Temizle</button>
                                 {/* !this.state.read && */}
-                                <button 
-                                className="btn btn-primary ms-2" 
-                                onClick={this.saveOrUpdateUserRegister} 
-                                disabled={this.state.multipleRequestIsCloseSubmit}
-                                > {this.state.multipleRequestIsCloseSubmit?<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>:""} Gönder</button>
+                                <button
+                                    className="btn btn-primary ms-2"
+                                    onClick={this.saveOrUpdateUserRegister}
+                                    disabled={this.state.multipleRequestIsCloseSubmit}
+                                > {this.state.multipleRequestIsCloseSubmit ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : ""} Gönder</button>
                                 <button className="btn btn-success ms-2" onClick={this.homePage}>Anasayfa</button>
                             </div>
                         </form>
