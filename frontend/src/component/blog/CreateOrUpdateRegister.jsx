@@ -25,7 +25,7 @@ export default class CreateOrUpdateRegister extends Component {
             username: "",
             email: "",
             passwd: "",
-            check:true
+            check: false
         }
 
         //BIND
@@ -106,12 +106,12 @@ export default class CreateOrUpdateRegister extends Component {
         });
     }
 
-     //isActive
+    //isActive
     onChangeCheck = () => {
-      this.setState({
-        check: !this.state.check
-      });
-  }
+        this.setState({
+            check: !this.state.check
+        });
+    }
 
     //SUBMIT 
     saveOrUpdateUserRegister = (event) => {
@@ -177,11 +177,11 @@ export default class CreateOrUpdateRegister extends Component {
                                 <label htmlFor="email">email</label>
                                 <input type="text" name="email" id="email" className="form-control" placeholder="Kullanıcı email" onChange={this.onChangeEmail} value={this.state.email} />
                             </div>
-                            
+
                             {/* isActive */}
                             <div className="form-group mb-3">
                                 <label htmlFor="check">check</label>
-                                <input type="checkbox" name="check" id="check"  onChange={this.onChangeCheck}  />
+                                <input type="checkbox" name="check" id="check" onChange={this.onChangeCheck} />
                             </div>
 
                             {/* submit */}
