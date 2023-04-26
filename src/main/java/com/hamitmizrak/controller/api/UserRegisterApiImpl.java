@@ -1,5 +1,6 @@
 package com.hamitmizrak.controller.api;
 
+import com.hamitmizrak.annotation.UniqueEmailValidation;
 import com.hamitmizrak.bussiness.dto.UserRegisterDto;
 import com.hamitmizrak.bussiness.services.IUserRegisterService;
 import com.hamitmizrak.error.ApiResult;
@@ -64,6 +65,8 @@ public class UserRegisterApiImpl implements IUserRegisterApi {
     @Override
     @PostMapping("/register")
     public ResponseEntity<UserRegisterDto>  createRegister(@Valid @RequestBody UserRegisterDto userRegisterDto) {
+        UniqueEmailValidation uniqueEmailValidation=new UniqueEmailValidation();
+        uniqueEmailValidation.result(userRegisterDto.getUpdate());
         iUserRegisterService.createRegister(userRegisterDto);
         return ResponseEntity.ok(userRegisterDto);
     }

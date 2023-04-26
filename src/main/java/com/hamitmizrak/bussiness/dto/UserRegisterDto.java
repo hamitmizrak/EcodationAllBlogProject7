@@ -35,6 +35,8 @@ public class UserRegisterDto implements Serializable {
     @UserRegisterUniqueEmail
     private String email;
 
+    private String update;
+
     // PASSWORD
     // Json create yapıldığı görünmez yapmak için ancak validation sıkıntı oluyor. 404 hatası döner
     // @JsonIgnore yerine @JsonView yazabiliriz.

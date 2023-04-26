@@ -1,5 +1,6 @@
 package com.hamitmizrak.bussiness.services.impl;
 
+import com.hamitmizrak.annotation.UniqueEmailValidation;
 import com.hamitmizrak.bean.ModelMapperBean;
 import com.hamitmizrak.bean.PasswordEncoderBean;
 import com.hamitmizrak.bussiness.dto.UserRegisterDto;
@@ -69,7 +70,6 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
             //sifreyi masklemek
             userRegisterDto.setPasswd(passwordEncoderBean.passwordEncoderMethod().encode(userRegisterDto.getPasswd()));
             UserRegisterEntity entityMapper = DtoToEntity(userRegisterDto);
-            System.out.println(entityMapper.getCheck());
             UserRegisterEntity userRegisterEntity = iUserRegisterRepository.save(entityMapper);
             //ID dönsün
             userRegisterDto.setId(userRegisterEntity.getId());

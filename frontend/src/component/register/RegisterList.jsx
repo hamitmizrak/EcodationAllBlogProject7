@@ -93,6 +93,7 @@ export default class RegisterList extends Component {
                                     <th>EMAİL</th>
                                     <th>PASSWORD</th>
                                     <th>ACTIVE</th>
+                                    <th>is UPDATE</th>
                                     <th>DATE</th>
                                     <th>UPDATE</th>
                                     <th>VIEW</th>
@@ -103,12 +104,14 @@ export default class RegisterList extends Component {
                             <tbody>
                                 {
                                     this.state.registerList.map(temp =>
+                                      
                                         <tr key={temp.id}>
                                             <td>{temp.id}</td>
                                             <td>{temp.uname}</td>
                                             <td>{temp.email}</td>
                                             <td>{temp.passwd.substring(0,5)}</td>
                                             <td>{temp.check}</td>
+                                            <td>{temp.update}</td>
                                             <td>{temp.createdDate}</td>
                                             <td><i style={{ cursor: "pointer" }} className="fa-solid fa-pen-to-square text-primary" onClick={() => this.updateRegister(temp.id)}></i></td>
                                             <td><i style={{ cursor: "pointer" }} className="fa-solid fa-binoculars text-success" onClick={() => this.viewRegister(temp.id)}></i></td>

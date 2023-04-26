@@ -25,6 +25,7 @@ export default class RegisterCreateOrUpdate extends Component {
             uname: null,
             email: null,
             passwd: null,
+            update:false,
             check: false,//Kullanıcı aktif veya pasif olmasını sağlamak
             read: false,//okumadan submit yapmayalım
             multipleRequestIsCloseSubmit: false, //çoklu istekleri kapatmak
@@ -64,6 +65,7 @@ export default class RegisterCreateOrUpdate extends Component {
                         email: registerDto.email,
                         passwd: registerDto.passwd,
                         check: !registerDto.check,
+                        update:"true",
                     })//end setState
                 }//end response
             ).catch(error => {
@@ -172,9 +174,9 @@ export default class RegisterCreateOrUpdate extends Component {
 
         //CDM => registerDto doldurmuştuk
         //1.YOL destructing
-        const { uname, email, passwd, check } = this.state;
+        const { uname, email, passwd, check,update } = this.state;
         const registerDto = {
-            uname, email, passwd, check
+            uname, email, passwd, check,update
         }
         //2.YOL
         /*
@@ -215,7 +217,8 @@ export default class RegisterCreateOrUpdate extends Component {
                 const response = await UserRegisterApiServices.createRegister(registerDto);
                 if (response.status === 200) {
                     this.setState({
-                        multipleRequestIsCloseSubmit: false
+                        multipleRequestIsCloseSubmit: false,
+                        update:"false",
                     })
                     this.props.history.push("/")
                 }
@@ -237,7 +240,8 @@ export default class RegisterCreateOrUpdate extends Component {
                 response => {
                     if (response.status === 200) {
                         this.setState({
-                            multipleRequestIsCloseSubmit: false
+                            multipleRequestIsCloseSubmit: false,
+                            
                         })
                         this.props.history.push("/")
                     }
